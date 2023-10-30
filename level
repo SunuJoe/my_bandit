@@ -1,0 +1,122 @@
+lv6 : P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+lv7 : z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S  (2>/dev/null)
+lv8 : TESKZC0XvTetK0S9xNwm25STk5iWrBvP 
+lv9 : EN632PlfYiZbn3PhVK3XOGSlNInNE00t grep "^ *1 "
+lv10 : G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s strings
+lv11 : 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM base64 (3byte 6bit clipping encode decode)
+lv12 : JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv ROT13 'tr'  
+lv13 : wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw --> tar, gzip, bzip2, xxd -r (hex --> binary)
+lv14 : fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq --> ssh -i [filepath] server_adderess i means "identity_file" 
+lv15 : jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt --> nmap 통해서 30000 open confirm. and using telnet 30000 port connecting!. telnet [ip_add] space [port] and then enter level 14 password then get next level pswd.
+lv16 : JQttfApK4SeyHwDlI9SXGR50qclOAil1 --> using openssl s_client -ign_eof -connect [ip/add]:[port] -brief then command line is wating  then enter lv15 passwrd then getting a lv16 paswd. it's done.
+lv17 : VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e 
+1) we need a nc or nmap for scanning open port.
+  first, i use nc(netcat) by scanning >> nc -zvv [ip or localhost]space[port - range] 2>&1 | grep succe
+  then i found out of the open port.
+  but this way i can't check it is ssl or not. only repeseting a tcp/* okay?
+  so, recommand nmap scanning
+2) nmap scanning : nmap -sV -T4 (what is T4) -p port-range [ip address or localhost]
+3) openssl connection trying to ssl port.
+   openssl s_clinet -connect ipaddress:port or localhost:port 
+4) input the previous password. then i got a RSA private key.
+5) i confused about how to use this fucking RSA strings.
+   so, barely i closed at the goal. but i didn't that.
+   we have to know about the rsa file name foramt, and file permission changed for chmod 400
+   only readable file. 
+   so move to /tmp/mkdir anything / prviate.key file 
+   make it. and then chmod 400 to readabley file make.
+6) last, we connect by new bndit17 
+   ssh -i private.key bandit17@bandit.labs.overthewire.org -p 2220 
+   boom!!
+
+lv18 : hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg 
+  >> python coding . two file compare. done.
+
+lv19 : awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+  >> ssh command last of that , we can add another shell command (eg. ls, cat, etc..)
+
+lv20 : VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+  >> ./bandit20-do operation and run as id 
+  >> ./bandit20-do cat /etc/bandit_pass/bandit20 id 11020(bandit20)
+  then i got password.
+
+learn >> file mode authority rwxxx ..
+
+lv21 : NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+  >>  netcat을 사용하여 공격을 한다. 
+     1. echo "password" | nc -l(listner mode) -p(specify port) 1234 &(back ground excute)
+      - echo 부분이 잘 이해가지 않지만 저 포트의 서버를 열어 접속 시 echo 를 실행한다는 의미라고
+        일단 생각하자.
+      - ./suconnect 1234 then got the password.
+lv22 : WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+lv23 : QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+   TODO :: what is cron, cron definition need to understand.
+
+lv24 : VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+   TODO : hard to understand.......!
+
+lv25 : p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+   1. socket programming
+   2. shell script  >> TODO
+lv26 : c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
+   crzay. more.
+   1. /etc/passwd . there are users basic information about shell etc..
+   2. more is excuted windows size. if i use normal window. then more command not need to
+      go into command mode. cause i can show one enogh page . 
+      so resize to smaller then i can use more command.
+
+lv27 : YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+
+lv28 : git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo.git
+       git ssh 연계시 22번 포트가 아닌 다른 포트를 사용할 경우 호스트:포트번호 적어줌.
+       AVanL161y9rsbcJIsFHuw35rjaOM19nR
+
+lv29 : tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+    1. pack에 있는packfile을 git verify-pack -v [packfile.pack]로 압축한 내용을 본다.
+    2. blob file을 git cat-file -p [sha1 hash code] 로 알아냄.
+       * git cat-file -p [hash] : hash file에 압축된 내용 print.
+    
+    other solution:
+    1. git log 를 통하여 로그 확인
+    2. git show 를 통하여 해쉬값 수정 내용 확인하여 비번 확인.
+
+lv30 : xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+    same way like lv29.
+
+lv31 : OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
+    same way like lv29.
+    
+lv32 : rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
+    <git push to bandit31-git>
+    1. make key.txt file written "May I come in?"
+    2. git add -f key.txt
+    3. git commit -m "key"
+    4. git remote add origin <ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
+    5. git push origin master
+    6. enter yes, and then input bandit31 passwords.
+    7. push then got a password lv32.
+  
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh &> /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh &> /dev/null
+
+
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname/foo || exit 1
+echo "Executing and deleting all scripts in /var/spool/$myname/foo:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        owner="$(stat --format "%U" ./$i)"
+        if [ "${owner}" = "bandit23" ]; then
+            timeout -s 9 60 ./$i
+        fi
+        rm -rf ./$i
+    fi
+done
+
+
